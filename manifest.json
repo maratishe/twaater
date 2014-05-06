@@ -1,0 +1,19 @@
+{
+	"manifest_version":2,
+	"name":"Twooter",
+	"description":"Twooter",
+	"version":"1.0",
+	"permissions": ["tabs","storage","<all_urls>"],
+	"browser_action":{
+		"default_icon":"icon.png",
+		"default_title":"Twooter",
+		"default_popup":"twooter.float.html"
+	},
+	"background":{ "scripts":["serverless.js","twooter.background.js"]},
+	"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+	"content_scripts":[{
+			"matches":["https://twitter.com/*"],
+			"js":["serverless.js","twooter.inpage.js"],
+			"run_at":"document_end"
+	}]
+}
